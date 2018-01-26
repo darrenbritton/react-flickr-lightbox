@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-import Example from '../../src'
+import FlickrLightbox from '../../src'
 
 class Demo extends Component {
   render() {
-    return <div>
-      <h1>react-flickr-lightbox Demo</h1>
-      <Example/>
-    </div>
+    return (
+      <FlickrLightbox api_key='1b4e5b0203fab0d5731afe68f0a543e1' user_id='132343752@N06' album_id='72157652534675541' limit={10} />
+    )
   }
 }
 
