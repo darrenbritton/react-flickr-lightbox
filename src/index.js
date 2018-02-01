@@ -17,7 +17,7 @@ export default class extends Component {
           {
             return {
               src: p.url_o,
-              thumbnail: p.url_q,
+              thumbnail: p.url_sq,
               caption: `${p.title}: Photo by ${p.ownername}`
             }
           })
@@ -25,7 +25,7 @@ export default class extends Component {
   }
 
   generateApiUrl = () => {
-    const extras = ["url_o", "url_q", "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
+    const extras = ["url_o", "url_sq", "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
     return buildUrl('https://api.flickr.com', {
       path: 'services/rest/',
       queryParams: {
