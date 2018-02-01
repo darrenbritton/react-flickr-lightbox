@@ -9,8 +9,33 @@ export default class extends Component {
     this.state = { images: []};
   }
 
-  componentDidMount() {
-    fetch(this.generateApiUrl())
+  componentWillMount() {
+    this.queryFlickrApi(this.props)
+  }
+
+  componentWillRecieveProps(nextProps) {
+    this.queryFlickrApi(nextProps)
+  }
+
+  generateApiUrl = (props) => {
+    const extras = ["url_o", "url_sq", "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
+    return buildUrl('https://api.flickr.com', {
+      path: 'services/rest/',
+      queryParams: {
+        method: 'flickr.photos.search',
+        format: 'json',
+        api_key: props.api_key || '',
+        user_id: props.user_id || '',
+        album_id: props.album_id || '',
+        per_page: props.limit || Number.MAX_SAFE_INTEGER,
+        nojsoncallback: '?',
+        extras: extras.join(',')
+      }
+    })
+  }
+
+  queryFlickrApi = (props) => {
+    fetch(this.generateApiUrl(props))
       .then(response => response.json())
       .then(data => this.setState({
         images: data.photos.photo.map((p) =>
@@ -24,25 +49,7 @@ export default class extends Component {
       }))
   }
 
-  generateApiUrl = () => {
-    const extras = ["url_o", "url_sq", "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
-    return buildUrl('https://api.flickr.com', {
-      path: 'services/rest/',
-      queryParams: {
-        method: 'flickr.photos.search',
-        format: 'json',
-        api_key: this.props.api_key || '',
-        user_id: this.props.user_id || '',
-        album_id: this.props.album_id || '',
-        per_page: this.props.limit || Number.MAX_SAFE_INTEGER,
-        nojsoncallback: '?',
-        extras: extras.join(',')
-      }
-    })
-  }
-
   render() {
-    console.log(this.state.images);
     return (
       <Gallery
         images={this.state.images}

@@ -6,7 +6,7 @@ import FlickrLightbox from '../../src'
 class Demo extends Component {
   render() {
     return (
-      <FlickrLightbox api_key='1b4e5b0203fab0d5731afe68f0a543e1' user_id='132343752@N06' album_id='72157652534675541' thumbnail_width={50} limit={10} />
+      <FlickrLightbox api_key='1b4e5b0203fab0d5731afe68f0a543e1' user_id='132343752@N06' limit={10} />
     )
   }
 }
