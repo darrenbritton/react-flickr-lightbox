@@ -1,6 +1,6 @@
 {
   "name": "react-flickr-lightbox",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "react-flickr-lightbox React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -10,10 +10,7 @@
     "lib",
     "umd"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/darrenbritton/react-flickr-lightbox.git"
-  },
+  "repository": "",
   "scripts": {
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -38,7 +35,6 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
   "keywords": [
     "react-component",
     "lightbox",
