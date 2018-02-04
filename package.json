@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThatCrazyIrishGuy/hobson-plugin-say.git"
+    "url": "git+https://github.com/darrenbritton/react-flickr-lightbox.git"
   },
   "scripts": {
     "build": "nwb build-react-component --no-demo",
