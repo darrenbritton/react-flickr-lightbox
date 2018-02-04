@@ -53,6 +53,7 @@ export default class extends Component {
     return (
       <Gallery
         images={this.state.images}
+        className={this.props.className}
       />
     )
   }

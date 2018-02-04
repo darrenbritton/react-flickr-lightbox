@@ -10,6 +10,10 @@
     "lib",
     "umd"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrenbritton/react-flickr-lightbox.git"
+  },
   "scripts": {
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -19,9 +23,9 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "aphrodite": "^1.2.5",
     "build-url": "^1.0.10",
-    "react-images": "^0.5.16"
+    "react-images": "^0.5.16",
+    "styled-components": "^3.1.6"
   },
   "peerDependencies": {
     "react": "16.x"
@@ -36,6 +40,10 @@
   "license": "MIT",
   "repository": "",
   "keywords": [
-    "react-component"
+    "react-component",
+    "lightbox",
+    "flickr",
+    "images",
+    "gallery"
   ]
 }

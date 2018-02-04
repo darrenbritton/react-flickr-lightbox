@@ -1,7 +1,57 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { css, StyleSheet } from 'aphrodite/no-important'
+import styled, { css } from 'styled-components'
 import Lightbox from 'react-images'
+
+const gutter = {
+	small: '2px',
+	large: '4px'
+};
+
+const Base = styled.div`
+  margin-right: ${gutter.small};
+  overflow: hidden;
+  color: palevioletred;
+
+	@media (max-width: 500px) {
+		margin-right: -${gutter.large};
+	}
+`;
+
+const Thumbnail = styled.a`
+	box-sizing: border-box;
+	display: block;
+	float: left;
+	line-height: 0;
+	padding-right: ${gutter.small};
+	padding-bottom: ${gutter.small};
+	overflow: hidden;
+
+	${props => props.landscape && css`
+		width: 30%;
+  `}
+
+	${props => props.square && css`
+		padding-bottom: 0;
+		width: 40%;
+		@media (max-width: 500px) {
+			padding-bottom: 0;
+		}
+	`}
+
+	@media (max-width: 500px) {
+		padding-right: ${gutter.large};
+		padding-bottom: ${gutter.large};
+	}
+`;
+
+const Source = styled.img`
+	border: 0;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	width: auto;
+`;
 
 class Gallery extends Component {
 	constructor () {
@@ -59,26 +109,26 @@ class Gallery extends Component {
 
 		const gallery = images.map((obj, i) => {
 			return (
-				<a
+				<Thumbnail
 					href={obj.src}
-					className={css(classes.thumbnail, classes[obj.orientation])}
 					key={i}
 					onClick={(e) => this.openLightbox(i, e)}
+					{...obj.orientation}
 				>
-					<img src={obj.thumbnail} className={css(classes.source)} />
-				</a>
+					<Source src={obj.thumbnail}/>
+				</Thumbnail>
 			);
 		});
 
 		return (
-			<div className={css(classes.gallery)}>
+			<Base>
 				{gallery}
-			</div>
+			</Base>
 		);
 	}
 	render () {
 		return (
-			<div className="section">
+			<div>
 				{this.props.heading && <h2>{this.props.heading}</h2>}
 				{this.props.subheading && <p>{this.props.subheading}</p>}
 				{this.renderGallery()}
@@ -109,58 +159,5 @@ Gallery.propTypes = {
 	showThumbnails: PropTypes.bool,
 	subheading: PropTypes.string,
 };
-
-const gutter = {
-	small: 2,
-	large: 4,
-};
-const classes = StyleSheet.create({
-	gallery: {
-		marginRight: -gutter.small,
-		overflow: 'hidden',
-
-		'@media (min-width: 500px)': {
-			marginRight: -gutter.large,
-		},
-	},
-
-	// anchor
-	thumbnail: {
-		boxSizing: 'border-box',
-		display: 'block',
-		float: 'left',
-		lineHeight: 0,
-		paddingRight: gutter.small,
-		paddingBottom: gutter.small,
-		overflow: 'hidden',
-
-		'@media (min-width: 500px)': {
-			paddingRight: gutter.large,
-			paddingBottom: gutter.large,
-		},
-	},
-
-	// orientation
-	landscape: {
-		width: '30%',
-	},
-	square: {
-		paddingBottom: 0,
-		width: '40%',
-
-		'@media (min-width: 500px)': {
-			paddingBottom: 0,
-		},
-	},
-
-	// actual <img />
-	source: {
-		border: 0,
-		display: 'block',
-		height: 'auto',
-		maxWidth: '100%',
-		width: 'auto',
-	},
-});
 
 export default Gallery;
