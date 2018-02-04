@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import buildUrl from 'build-url'
 import Gallery from './components/gallery'
-import 'whatwg-fetch'
+import fetch from 'node-fetch'
 
 
 /**

@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "build-url": "^1.0.10",
+    "node-fetch": "^2.0.0",
     "react-images": "^0.5.16",
-    "styled-components": "^3.1.6",
-    "whatwg-fetch": "^2.0.3"
+    "styled-components": "^3.1.6"
   },
   "peerDependencies": {
     "react": "16.x"
