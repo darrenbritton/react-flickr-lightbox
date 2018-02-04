@@ -2,6 +2,6 @@ var createNwbWebpackConfig = require('create-nwb-webpack-config');
 
 module.exports = {
   webpackConfig: createNwbWebpackConfig(),
-  components: 'src/*.js',
+  components: 'src/index.js',
   showSidebar: false
 };

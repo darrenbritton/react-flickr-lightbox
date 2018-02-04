@@ -1,6 +1,6 @@
 ## Prerequisites
 
-[Node.js](http://nodejs.org/) >= v4 must be installed.
+[Node.js](http://nodejs.org/) >= v8 must be installed.
 
 ## Installation
 
@@ -8,7 +8,7 @@
 
 ## Demo Development Server
 
-- `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
+- `npm start` will run a development server with the component's docs site at [http://localhost:6060](http://localhost:6060) with hot module reloading.
 
 ## Running Tests
 

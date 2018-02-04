@@ -1,16 +1,6 @@
 # react-flickr-lightbox
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+[![CircleCI](https://circleci.com/gh/darrenbritton/react-flickr-lightbox.svg?style=svg)](https://circleci.com/gh/darrenbritton/react-flickr-lightbox)
+[![npm version](https://badge.fury.io/js/react-flickr-lightbox.svg)](https://badge.fury.io/js/react-flickr-lightbox)
 
-Describe react-flickr-lightbox here.
-
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
-
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+A react compoent that generates a gallery and lightbox using the given flickr api key and details. see the docs site [here](https://darrenbritton.com/react-flickr-lightbox/) for further details.
