@@ -10,15 +10,18 @@
     "lib",
     "umd"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThatCrazyIrishGuy/hobson-plugin-say.git"
+  },
   "scripts": {
-    "build": "nwb build-react-component",
-    "clean": "nwb clean-module && nwb clean-demo",
-    "start": "nwb serve-react-demo",
+    "build": "nwb build-react-component --no-demo",
+    "clean": "nwb clean-module",
+    "start": "styleguidist server",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "deploy": "gh-pages -b gh-pages -d demo/dist"
+    "deploy": "styleguidist build && gh-pages -b gh-pages -d styleguide"
   },
   "dependencies": {
     "build-url": "^1.0.10",
@@ -29,10 +32,12 @@
     "react": "16.x"
   },
   "devDependencies": {
+    "create-nwb-webpack-config": "^1.0.0",
     "gh-pages": "^1.1.0",
     "nwb": "0.21.x",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-styleguidist": "^6.2.2"
   },
   "author": "",
   "homepage": "",
