@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import buildUrl from 'build-url'
 import Gallery from './components/gallery'
-import fetch from 'node-fetch'
-
+import fetch from 'isomorphic-fetch'
 
 /**
  * generates a gallery and lightbox using the given flickr api key and details
