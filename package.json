@@ -38,7 +38,7 @@
     "nwb": "0.21.x",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-styleguidist": "^6.2.2"
+    "react-styleguidist": "^7.0.0"
   },
   "author": "",
   "homepage": "",
