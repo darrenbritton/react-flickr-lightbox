@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "create-nwb-webpack-config": "^1.0.0",
-    "gh-pages": "^1.1.0",
+    "gh-pages": "^2.0.0",
     "nwb": "0.21.x",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
