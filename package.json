@@ -27,7 +27,7 @@
     "build-url": "^1.0.10",
     "isomorphic-fetch": "^2.2.1",
     "react-images": "^0.5.16",
-    "styled-components": "^4.0.0"
+    "styled-components": "^4.3.1"
   },
   "peerDependencies": {
     "react": "16.x"
