@@ -24,7 +24,7 @@
     "deploy": "styleguidist build && gh-pages -b gh-pages -d styleguide"
   },
   "dependencies": {
-    "build-url": "^1.0.10",
+    "build-url": "^2.0.0",
     "isomorphic-fetch": "^2.2.1",
     "react-images": "^1.0.0",
     "styled-components": "^4.0.0"
