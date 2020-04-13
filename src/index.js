@@ -23,7 +23,7 @@ class FlickrLightbox extends Component {
   }
 
   generateApiUrl = (props) => {
-    const extras = ["url_o", "url_m", "url_sq", "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
+    const extras = ["url_o", "url_m", props.thumbnailSizeParam, "license", "date_upload", "date_taken", "icon_server", "original_format", "last_update", "geo", "tags", "machine_tags", "o_dims", "views", "media", "path_alias", "owner_name"];
     return buildUrl('https://api.flickr.com', {
       path: 'services/rest/',
       queryParams: {
@@ -52,7 +52,7 @@ class FlickrLightbox extends Component {
             {
               return {
                 src: p.url_o || p.url_m || 'https://s.yimg.com/pw/images/en-us/photo_unavailable.png',
-                thumbnail: p.url_sq,
+                thumbnail: p[props.thumbnailSizeParam],
                 caption: `${p.title || 'Untitled'}: Photo by ${p.ownername}`
               }
             })
@@ -95,7 +95,15 @@ FlickrLightbox.propTypes = {
   /**
  * class name to be applied to root div
  */
-  className: PropTypes.string
+  className: PropTypes.string,
+  /**
+ * class name to be applied to root div
+ */
+  thumbnailSizeParam: PropTypes.string
+}
+
+FlickrLightbox.defaultProps = {
+  thumbnailSizeParam: 'url_sq'
 }
 
 export default FlickrLightbox
