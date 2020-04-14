@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /workspace
+  working_directory: ~/workspace
   docker:
     - image: circleci/node:latest
 
@@ -26,13 +26,8 @@ jobs:
             - node_modules
             - package-lock.json
       - persist_to_workspace:
-          root: /workspace
-          paths:
-            - es
-            - lib
-            - styleguide
-            - package.json
-            - .git
+          root: ~/workspace
+          paths: .
   deploy:
     <<: *defaults
     steps:
@@ -45,32 +40,38 @@ jobs:
           name: ssh alias override key verification
           command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
-          name: install gh-pages
-          command: npm i gh-pages
-      - run:
           name: npm run deploy
           command: npm run deploy
 
   publish:
-      <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/repo
-        - run:
-            name: Authenticate with registry
-            command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
-        - run:
-            name: Publish package
-            command: npm publish
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/workspace
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/workspace/.npmrc
+      - run:
+          name: git config
+          command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
+      - run:
+          name: ssh alias override key verification
+          command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: patch
+          command: npm version patch
+      - run:
+          name: Publish package
+          command: npm publish
+      - run:
+          name: git push
+          command: git push
 
 workflows:
   version: 2
-  build_and_deploy:
+  build_deploy_and_publish:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
+      - build
       - deploy:
           requires:
             - build
@@ -82,8 +83,4 @@ workflows:
             - deploy
           filters:
             branches:
-<<<<<<< Updated upstream
-              only: source
-=======
               only: master
->>>>>>> Stashed changes
