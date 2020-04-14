@@ -128,7 +128,7 @@ class Gallery extends Component {
 	}
 	render () {
 		return (
-			<div>
+			<div className={this.props.className}>
 				{this.props.heading && <h2>{this.props.heading}</h2>}
 				{this.props.subheading && <p>{this.props.subheading}</p>}
 				{this.renderGallery()}
