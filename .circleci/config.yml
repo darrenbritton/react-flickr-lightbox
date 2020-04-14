@@ -64,11 +64,8 @@ jobs:
           name: Publish package
           command: npm publish
       - run:
-          name: install package-version-git-tag
-          command: npm install package-version-git-tag
-      - run:
           name: git push
-          command: package-version-git-tag --push
+          command: npm run push-tagged-release
 
 workflows:
   version: 2
