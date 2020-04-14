@@ -1,6 +1,6 @@
 {
   "name": "react-flickr-lightbox",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "react-flickr-lightbox React component",
   "main": "lib/index.js",
   "module": "es/index.js",
