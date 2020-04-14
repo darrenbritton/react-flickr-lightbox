@@ -1,4 +1,5 @@
 defaults: &defaults
+  executorType: machine
   working_directory: /workspace
   docker:
     - image: circleci/node:latest
