@@ -1,6 +1,5 @@
 defaults: &defaults
-  executorType: machine
-  working_directory: /workspace
+  working_directory: ~/workspace
   docker:
     - image: circleci/node:latest
 
@@ -27,7 +26,7 @@ jobs:
             - node_modules
             - package-lock.json
       - persist_to_workspace:
-          root: /workspace
+          root: ~/workspace
           paths:
             - es
             - lib
@@ -38,7 +37,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /workspace
+          at: ~/workspace
       - run:
           name: git config
           command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
@@ -56,10 +55,10 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/workspace
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/workspace/.npmrc
       - run:
           name: Publish package
           command: npm publish
