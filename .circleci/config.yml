@@ -34,48 +34,40 @@ jobs:
             - package.json
             - .git
   deploy:
-      <<: *defaults
-      steps:
-        - attach_workspace:
-            at: /workspace
-        - run:
-            name: git config
-            command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
-        - run:
-            name: ssh alias override key verification
-            command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
-        - run:
-            name: install gh-pages
-            command: npm i gh-pages
-        - run:
-            name: gh-pages deploy
-            command: npm run deploy
-        - persist_to_workspace:
-          root: ~/repo
-          paths:
-            - es
-            - lib
-            - package.json
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /workspace
+      - run:
+          name: git config
+          command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
+      - run:
+          name: ssh alias override key verification
+          command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: install gh-pages
+          command: npm i gh-pages
+      - run:
+          name: gh-pages deploy
+          command: npm run deploy
+
   publish:
-      <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/repo
-        - run:
-            name: Authenticate with registry
-            command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
-        - run:
-            name: Publish package
-            command: npm publish
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
 
 workflows:
   version: 2
-  build_and_deploy:
+  build_deploy_and_publish:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
+      - build
       - deploy:
           requires:
             - build
